@@ -1,8 +1,8 @@
 module "ec2_p2p" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 2.0"
+  version = "~> v2.0"
 
-  name           = "sc-p2p"
+  name = "sc-p2p"
 
   ami            = var.p2p_ami
   instance_type  = var.p2p_instance_type
@@ -12,7 +12,7 @@ module "ec2_p2p" {
   associate_public_ip_address = false
   key_name                    = var.key_name
 
-  vpc_security_group_ids = [ module.sg_p2p.this_security_group_id ]
+  vpc_security_group_ids = [module.sg_p2p.this_security_group_id]
 
   subnet_ids = module.vpc.private_subnets
 

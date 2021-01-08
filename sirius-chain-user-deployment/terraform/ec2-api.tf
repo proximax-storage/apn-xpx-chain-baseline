@@ -1,8 +1,8 @@
 module "ec2_api" {
   source  = "terraform-aws-modules/ec2-instance/aws"
-  version = "~> 2.0"
+  version = "~> v2.0"
 
-  name           = "sc-api"
+  name = "sc-api"
 
   ami            = var.api_ami
   instance_type  = var.api_instance_type
@@ -12,7 +12,7 @@ module "ec2_api" {
   associate_public_ip_address = false
   key_name                    = var.key_name
 
-  vpc_security_group_ids = [ module.sg_api.this_security_group_id ]
+  vpc_security_group_ids = [module.sg_api.this_security_group_id]
 
   subnet_ids = module.vpc.private_subnets
 

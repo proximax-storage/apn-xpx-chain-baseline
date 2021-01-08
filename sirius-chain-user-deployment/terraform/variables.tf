@@ -1,32 +1,33 @@
 # common vars
 
 variable "aws_region" {
-  type        = string
+  type = string
 }
 
 variable "key_name" {
   description = "Name of EC2 Keypair"
   type        = string
+  default     = ""
 }
 
 variable "tag_project_name" {
   type = string
 }
 
-variable "tf_state_bucket_name" {
-  description = "Name of S3 Bucket for Terraform State"
-  type        = string
-}
+# variable "tf_state_bucket_name" {
+#   description = "Name of S3 Bucket for Terraform State"
+#   type        = string
+# }
 
-variable "tf_state_key_name" {
-  description = "Key Name for Terraform State"
-  type        = string
-}
+# variable "tf_state_key_name" {
+#   description = "Key Name for Terraform State"
+#   type        = string
+# }
 
 # vpc vars
 
 variable "cidr" {
-  type        = string
+  type = string
 }
 
 variable "azs" {
@@ -35,11 +36,11 @@ variable "azs" {
 }
 
 variable "private_subnets" {
-  type        = list(string)
+  type = list(string)
 }
 
 variable "public_subnets" {
-  type        = list(string)
+  type = list(string)
 }
 
 variable "enable_nat_gateway" {
@@ -59,13 +60,13 @@ variable "one_nat_gateway_per_az" {
 
 # bastion vars
 
-variable "bastion_ami_id" {
-  type        = string
-}
+# variable "bastion_ami_id" {
+#   type        = string
+# }
 
-variable "bastion_instance_type" {
-  type        = string
-}
+# variable "bastion_instance_type" {
+#   type        = string
+# }
 
 # sirius chain api node vars
 

@@ -1,6 +1,6 @@
 module "sc_api_ext_alb" {
   source  = "terraform-aws-modules/alb/aws"
-  version = "~> 5.0"
+  version = "~> v5.0"
 
   name = "sc-api-alb"
 
@@ -13,7 +13,7 @@ module "sc_api_ext_alb" {
   subnets         = module.vpc.public_subnets
   security_groups = [module.sg_alb.this_security_group_id]
 
-  
+
   target_groups = [
     {
       name             = "sc-api-target-group"
@@ -32,8 +32,8 @@ module "sc_api_ext_alb" {
   ]
 
   tags = {
-    Project     = var.tag_project_name
-    Terraform  = true
+    Project   = var.tag_project_name
+    Terraform = true
   }
 }
 

@@ -1,12 +1,10 @@
-aws_region = "ap-southeast-1"
-
-tag_project_name = "Project Name"
+# TODO: Change IPs
 
 cidr = "10.41.0.0/16"
 azs  = [
-  "ap-southeast-1a",
-  "ap-southeast-1b",
-  "ap-southeast-1c",
+  "ap-south-1a",
+  "ap-south-1b",
+  "ap-south-1c",
 ]
 
 public_subnets = [

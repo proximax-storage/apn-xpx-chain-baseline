@@ -1,5 +1,5 @@
-aws_region = "ap-southeast-1"
-key_name = "public-key"
+# TODO: Change AWS Region
 
-# tf_state_bucket_name = 
-# tf_state_key_name = "production"
+aws_region = "ap-south-1"
+tag_project_name = "Project Name"
+# key_name = "public-key"

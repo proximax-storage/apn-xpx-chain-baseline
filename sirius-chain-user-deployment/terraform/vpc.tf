@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 2.22"
+  version = "~> v2.0"
 
   name = "${terraform.workspace}-vpc"
   cidr = var.cidr

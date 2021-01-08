@@ -25,13 +25,6 @@ module "sg_api" {
     }
   ]
 
-  ingress_with_source_security_group_id = [
-    {
-      rule                     = "ssh-tcp"
-      source_security_group_id = module.sg_bastion.this_security_group_id
-    }
-  ]
-
   egress_rules = [
     "http-80-tcp",
     "https-443-tcp",
@@ -48,7 +41,7 @@ module "sg_api" {
   ]
 
   tags = {
-    Project     = var.tag_project_name
-    Terraform   = true
+    Project   = var.tag_project_name
+    Terraform = true
   }
 }
