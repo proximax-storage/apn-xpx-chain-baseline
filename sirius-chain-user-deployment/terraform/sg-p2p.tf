@@ -2,18 +2,18 @@ module "sg_p2p" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> v3.0"
 
-  name            = "sc-p2p"
+  name            = "sirius-chain-p2p"
   description     = "Security Group for the Sirius Chain P2P Nodes"
   use_name_prefix = false
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 
   ingress_with_cidr_blocks = [
     {
       from_port   = 7900
       to_port     = 7902
       protocol    = "tcp"
-      cidr_blocks = var.cidr
+      cidr_blocks = var.ingress_cidr
       description = "Sirius Chain"
     }
   ]

@@ -2,11 +2,11 @@ module "sg_alb" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> v3.0"
 
-  name            = "sc-alb"
-  description     = "Security Group for Application Load Balancer"
+  name            = "sirius-chain-alb"
+  description     = "Security Group for the Sirius Chain Application Load Balancer"
   use_name_prefix = false
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 
   ingress_with_cidr_blocks = [
     {
@@ -24,7 +24,7 @@ module "sg_alb" {
   ]
 
   tags = {
-    Project     = var.tag_project_name
-    Terraform   = true
+    Project   = var.tag_project_name
+    Terraform = true
   }
 }

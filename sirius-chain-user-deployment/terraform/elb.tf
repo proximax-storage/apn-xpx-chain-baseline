@@ -2,21 +2,21 @@ module "sc_api_ext_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> v5.0"
 
-  name = "sc-api-alb"
+  name = "sirius-chain-api"
 
   load_balancer_type = "application"
   internal           = false
 
-  enable_deletion_protection = true
+  enable_deletion_protection = var.elb_termination_protection
 
-  vpc_id          = module.vpc.vpc_id
-  subnets         = module.vpc.public_subnets
+  vpc_id          = var.vpc_id
+  subnets         = var.elb_subnets
   security_groups = [module.sg_alb.this_security_group_id]
 
 
   target_groups = [
     {
-      name             = "sc-api-target-group"
+      name             = "sirius-chain-api"
       backend_protocol = "HTTP"
       backend_port     = 3000
       target_type      = "instance"

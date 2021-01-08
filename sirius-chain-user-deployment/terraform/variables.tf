@@ -11,62 +11,42 @@ variable "key_name" {
 }
 
 variable "tag_project_name" {
+  type    = string
+  default = "Sirius Chain"
+}
+
+variable "instance_termination_protection" {
+  type    = bool
+  default = false
+}
+
+variable "vpc_id" {
   type = string
 }
 
-# variable "tf_state_bucket_name" {
-#   description = "Name of S3 Bucket for Terraform State"
-#   type        = string
-# }
-
-# variable "tf_state_key_name" {
-#   description = "Key Name for Terraform State"
-#   type        = string
-# }
-
-# vpc vars
-
-variable "cidr" {
-  type = string
-}
-
-variable "azs" {
-  description = "AZs to deploy VPC"
-  type        = list(string)
-}
-
-variable "private_subnets" {
+variable "subnet_ids" {
   type = list(string)
 }
 
-variable "public_subnets" {
+variable "ingress_cidr" {
+  type    = string
+  default = "0.0.0.0/0"
+}
+
+# elastic load balancer
+variable "deploy_elb" {
+  type    = bool
+  default = true
+}
+
+variable "elb_subnets" {
   type = list(string)
 }
 
-variable "enable_nat_gateway" {
-  description = "Enable creation of NAT Gateway"
-  type        = bool
+variable "elb_termination_protection" {
+  type    = bool
+  default = false
 }
-
-variable "single_nat_gateway" {
-  description = "Create a single NAT Gateway"
-  type        = bool
-}
-
-variable "one_nat_gateway_per_az" {
-  description = "Create a single NAT Gateway per AZ"
-  type        = bool
-}
-
-# bastion vars
-
-# variable "bastion_ami_id" {
-#   type        = string
-# }
-
-# variable "bastion_instance_type" {
-#   type        = string
-# }
 
 # sirius chain api node vars
 
@@ -79,15 +59,23 @@ variable "api_instance_type" {
 }
 
 variable "api_instance_count" {
-  type = number
+  type    = number
+  default = 1
 }
 
 variable "api_ebs_size" {
-  type = number
+  type    = number
+  default = 20
 }
 
 variable "api_ebs_type" {
-  type = string
+  type    = string
+  default = "gp2"
+}
+
+variable "api_associate_public_ip" {
+  type    = bool
+  default = false
 }
 
 # sirius chain p2p node vars
@@ -101,13 +89,21 @@ variable "p2p_instance_type" {
 }
 
 variable "p2p_instance_count" {
-  type = number
+  type    = number
+  default = 3
 }
 
 variable "p2p_ebs_size" {
-  type = number
+  type    = number
+  default = 20
 }
 
 variable "p2p_ebs_type" {
-  type = string
+  type    = string
+  default = "gp2"
+}
+
+variable "p2p_associate_public_ip" {
+  type    = bool
+  default = false
 }

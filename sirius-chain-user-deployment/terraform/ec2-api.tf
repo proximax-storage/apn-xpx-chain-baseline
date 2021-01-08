@@ -2,19 +2,19 @@ module "ec2_api" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> v2.0"
 
-  name = "sc-api"
+  name = "sirius-chain-api"
 
   ami            = var.api_ami
   instance_type  = var.api_instance_type
   instance_count = var.api_instance_count
 
-  disable_api_termination     = true
-  associate_public_ip_address = false
+  disable_api_termination     = var.instance_termination_protection
+  associate_public_ip_address = var.api_associate_public_ip
   key_name                    = var.key_name
 
   vpc_security_group_ids = [module.sg_api.this_security_group_id]
 
-  subnet_ids = module.vpc.private_subnets
+  subnet_ids = var.subnet_ids
 
   iam_instance_profile = aws_iam_instance_profile.sc.name
 

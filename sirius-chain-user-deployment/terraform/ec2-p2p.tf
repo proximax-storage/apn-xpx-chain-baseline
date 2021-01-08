@@ -2,19 +2,19 @@ module "ec2_p2p" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> v2.0"
 
-  name = "sc-p2p"
+  name = "sirius-chain-p2p"
 
   ami            = var.p2p_ami
   instance_type  = var.p2p_instance_type
   instance_count = var.p2p_instance_count
 
-  disable_api_termination     = true
-  associate_public_ip_address = false
+  disable_api_termination     = var.instance_termination_protection
+  associate_public_ip_address = var.p2p_associate_public_ip
   key_name                    = var.key_name
 
   vpc_security_group_ids = [module.sg_p2p.this_security_group_id]
 
-  subnet_ids = module.vpc.private_subnets
+  subnet_ids = var.subnet_ids
 
   iam_instance_profile = aws_iam_instance_profile.sc.name
 

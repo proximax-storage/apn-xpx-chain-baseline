@@ -2,25 +2,25 @@ module "sg_api" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> v3.0"
 
-  name            = "sc-api"
+  name            = "sirius-chain-api"
   description     = "Security Group for the Sirius Chain API Nodes"
   use_name_prefix = false
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = var.vpc_id
 
   ingress_with_cidr_blocks = [
     {
       from_port   = 7900
       to_port     = 7902
       protocol    = "tcp"
-      cidr_blocks = var.cidr
+      cidr_blocks = var.ingress_cidr
       description = "Sirius Chain"
     },
     {
       from_port   = 3000
       to_port     = 3000
       protocol    = "tcp"
-      cidr_blocks = var.cidr
+      cidr_blocks = var.ingress_cidr
       description = "Sirius Chain REST"
     }
   ]
