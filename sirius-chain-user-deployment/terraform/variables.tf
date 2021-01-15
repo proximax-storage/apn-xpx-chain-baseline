@@ -15,42 +15,55 @@ variable "key_name" {
   default = ""
 }
 
+variable "instance_termination_protection" {
+  type    = bool
+  default = false
+}
+
 #============================
 # VPC Deployment Variables
 #============================
 variable "create_vpc" {
-  type = bool
+  type    = bool
+  default = true
 }
 
 variable "cidr" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "azs" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "public_subnets" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "private_subnets" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 #============================
 # Existing VPC Variables
 #============================
 variable "vpc_id" {
-  type = string
+  type    = string
+  default = ""
 }
 
 variable "public_subnet_ids" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "private_subnet_ids" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 #============================
@@ -62,7 +75,8 @@ variable "alb_deletion_protection" {
 }
 
 variable "acm_arn" {
-  type = string
+  type    = string
+  default = ""
 }
 
 #============================

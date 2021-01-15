@@ -6,6 +6,8 @@ aws_region = "us-east-1"
 
 # key_name = "sirius_chain_key"
 
+# instance_termination_protection = true
+
 # VPC Creation
 create_vpc = true
 cidr = "10.0.0.0/16"
@@ -26,13 +28,13 @@ instance_termination_protection = false
 # alb_deletion_protection = true
 acm_arn = ""
 
-api_ami = ""
+api_ami = "ami-0be2609ba883822ec"
 api_instance_type = "t3.micro"
 api_instance_count = 1
 api_ebs_size = 8
 api_ebs_type = "gp2"
 
-p2p_ami = ""
+p2p_ami = "ami-0be2609ba883822ec"
 p2p_instance_type = "t3.micro"
 p2p_instance_count = 1
 p2p_ebs_size = 8

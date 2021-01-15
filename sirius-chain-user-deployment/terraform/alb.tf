@@ -10,7 +10,7 @@ module "alb" {
   enable_deletion_protection = var.alb_deletion_protection
 
   vpc_id          = var.create_vpc ? module.vpc.vpc_id : var.vpc_id
-  subnets         = var.create_vpc ? module.vpc.public_subnet_ids : var.public_subnet_ids
+  subnets         = var.create_vpc ? module.vpc.public_subnets : var.public_subnet_ids
   security_groups = [aws_security_group.alb.id]
 
   target_groups = [
