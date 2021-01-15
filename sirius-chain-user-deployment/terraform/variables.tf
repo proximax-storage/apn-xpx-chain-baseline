@@ -1,54 +1,73 @@
-# common vars
-
+#============================
+# General Variables
+#============================
 variable "aws_region" {
   type = string
 }
 
+variable "tags" {
+  type    = map(string)
+  default = {}
+}
+
 variable "key_name" {
-  description = "Name of EC2 Keypair"
-  type        = string
-  default     = ""
-}
-
-variable "tag_project_name" {
   type    = string
-  default = "Sirius Chain"
+  default = ""
 }
 
-variable "instance_termination_protection" {
-  type    = bool
-  default = false
+#============================
+# VPC Deployment Variables
+#============================
+variable "create_vpc" {
+  type = bool
 }
 
+variable "cidr" {
+  type = string
+}
+
+variable "azs" {
+  type = list(string)
+}
+
+variable "public_subnets" {
+  type = list(string)
+}
+
+variable "private_subnets" {
+  type = list(string)
+}
+
+#============================
+# Existing VPC Variables
+#============================
 variable "vpc_id" {
   type = string
 }
 
-variable "subnet_ids" {
+variable "public_subnet_ids" {
   type = list(string)
 }
 
-variable "ingress_cidr" {
-  type    = string
-  default = "0.0.0.0/0"
-}
-
-# elastic load balancer
-variable "deploy_elb" {
-  type    = bool
-  default = true
-}
-
-variable "elb_subnets" {
+variable "private_subnet_ids" {
   type = list(string)
 }
 
-variable "elb_termination_protection" {
+#============================
+# ALB Variables
+#============================
+variable "alb_deletion_protection" {
   type    = bool
   default = false
 }
 
-# sirius chain api node vars
+variable "acm_arn" {
+  type = string
+}
+
+#============================
+# Sirius Chain API Variables
+#============================
 
 variable "api_ami" {
   type = string
@@ -73,12 +92,9 @@ variable "api_ebs_type" {
   default = "gp2"
 }
 
-variable "api_associate_public_ip" {
-  type    = bool
-  default = false
-}
-
-# sirius chain p2p node vars
+#============================
+# Sirius Chain P2P Variables
+#============================
 
 variable "p2p_ami" {
   type = string
@@ -101,9 +117,4 @@ variable "p2p_ebs_size" {
 variable "p2p_ebs_type" {
   type    = string
   default = "gp2"
-}
-
-variable "p2p_associate_public_ip" {
-  type    = bool
-  default = false
 }

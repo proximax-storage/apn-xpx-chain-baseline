@@ -8,13 +8,12 @@ module "ec2_api" {
   instance_type  = var.api_instance_type
   instance_count = var.api_instance_count
 
-  disable_api_termination     = var.instance_termination_protection
-  associate_public_ip_address = var.api_associate_public_ip
-  key_name                    = var.key_name
+  disable_api_termination = var.instance_termination_protection
+  key_name                = var.key_name
 
-  vpc_security_group_ids = [module.sg_api.this_security_group_id]
+  vpc_security_group_ids = [aws_security_group.api.id]
 
-  subnet_ids = var.subnet_ids
+  subnet_ids = var.create_vpc ? module.vpc.private_subnets : var.private_subnet_ids
 
   iam_instance_profile = aws_iam_instance_profile.sc.name
 
@@ -25,8 +24,5 @@ module "ec2_api" {
     }
   ]
 
-  tags = {
-    Terraform = true
-    Project   = var.tag_project_name
-  }
+  tags = var.tags
 }

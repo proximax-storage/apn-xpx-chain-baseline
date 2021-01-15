@@ -8,13 +8,12 @@ module "ec2_p2p" {
   instance_type  = var.p2p_instance_type
   instance_count = var.p2p_instance_count
 
-  disable_api_termination     = var.instance_termination_protection
-  associate_public_ip_address = var.p2p_associate_public_ip
-  key_name                    = var.key_name
+  disable_api_termination = var.instance_termination_protection
+  key_name                = var.key_name
 
-  vpc_security_group_ids = [module.sg_p2p.this_security_group_id]
+  vpc_security_group_ids = [aws_security_group.p2p.id]
 
-  subnet_ids = var.subnet_ids
+  subnet_ids = var.create_vpc ? module.vpc.private_subnets : var.private_subnet_ids
 
   iam_instance_profile = aws_iam_instance_profile.sc.name
 
@@ -25,8 +24,5 @@ module "ec2_p2p" {
     }
   ]
 
-  tags = {
-    Terraform = true
-    Project   = var.tag_project_name
-  }
+  tags = var.tags
 }
