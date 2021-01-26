@@ -1,0 +1,21 @@
+#------------------------------------
+# config-user.properties.j2 - user_config['key']
+#------------------------------------
+user_config:
+  node_boot_private_key: P2P_1_LICENCE_PRIVATE_KEY
+
+#------------------------------------
+# config-node.properties.j2 - node_config['key']
+#------------------------------------
+node_config:
+  localnode_host: "{{ ansible_host }}"
+  localnode_friendly_name: p2p-1
+  should_audit_dispatcher_inputs: false
+  max_blocks_per_sync_attempt: 400
+
+#------------------------------------
+# config-harvesting.properties.j2 - hv_config['key']
+#------------------------------------
+hv_config:
+  harvest_key: P2P_1_LICENCE_PRIVATE_KEY
+  is_auto_harvesting_enabled: true

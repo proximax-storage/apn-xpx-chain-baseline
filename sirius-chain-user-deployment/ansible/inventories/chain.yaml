@@ -1,0 +1,23 @@
+all:
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    ansible_user: ec2-user # check with AMI provider on the default Linux system account ref: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.html
+  children:
+    sirius-chain:
+      children:
+        api-nodes:
+          hosts:
+            api-1:
+              ansible_host: API_1_IP
+            api-2:
+              ansible_host: API_2_IP
+            api-3: 
+              ansible_host: API_3_IP
+        peer-nodes:
+          hosts:
+            p2p-1:
+              ansible_host: P2P_1_IP
+            p2p-2:
+              ansible_host: P2P_2_IP
+            p2p-3: 
+              ansible_host: P2P_3_IP

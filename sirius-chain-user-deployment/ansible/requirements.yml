@@ -1,0 +1,14 @@
+---
+#------------------------------------------------------------
+# Install third-party Ansible Galaxy roles
+# Run `ansible-galaxy install --roles-path=roles -r roles/requirements.yml`
+#------------------------------------------------------------
+- src: https://github.com/geerlingguy/ansible-role-docker.git
+  name: ansible-role-docker
+
+- src: https://github.com/proximax-storage/ansible-role-sirius-chain.git
+  name: ansible-role-sirius-chain
+  
+
+- src: https://github.com/geerlingguy/ansible-role-pip.git
+  name: ansible-role-pip

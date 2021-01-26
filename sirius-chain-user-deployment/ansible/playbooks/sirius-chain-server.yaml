@@ -1,0 +1,55 @@
+---
+#------------------------------------------------------
+# Simple playbook for installing Sirius Chain dependencies
+#------------------------------------------------------
+  - hosts: all
+    become: true
+
+    roles:
+      - role: ansible-role-pip
+        vars:
+          pip_package: python3-pip
+          pip_install_packages:
+            - name: boto3
+            - name: docker
+        tags: dependencies
+
+      - role: ansible-role-docker
+        vars:
+            docker_version: "latest"
+            docker_users: ["ubuntu"]
+        tags: dependencies
+      
+      - role: ansible-role-sirius-chain
+        tags: setup
+
+    tasks:
+      - name: install chrony
+        package:
+          name: chrony
+          state: present
+        tags: dependencies
+
+      - name: add aws server to chrony config
+        lineinfile:
+            path: /etc/chrony/chrony.conf
+            insertbefore: ^server|^pool
+            firstmatch: yes
+            line: server 169.254.169.123 prefer iburst minpoll 4 maxpoll 4
+        notify: restart chrony
+        tags: dependencies
+            
+      - name: Extract the seed data if file does not exist
+        unarchive:
+          src: "files/{{ seed_data_archive }}"
+          dest: "{{ siriuschain_config_directory }}"
+          creates: "{{ siriuschain_config_directory }}/data/index.dat"
+          owner: "{{ siriuschain_user }}"
+          group: "{{ siriuschain_user }}"
+        tags: seed
+
+    handlers:
+      - name: restart chrony
+        service:
+          name: chrony
+          state: restarted

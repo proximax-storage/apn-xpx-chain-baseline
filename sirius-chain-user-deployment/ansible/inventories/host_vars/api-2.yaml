@@ -1,0 +1,46 @@
+#------------------------------------
+# rest.json.j2
+#------------------------------------
+catapult_rest_client_private_key: API_2_REST_PRIVATE_KEY
+catapult_api_node_public_key: API_2_LICENCE_PUBLIC_KEY
+
+#------------------------------------
+# config-database.properties.j2 - default_db_config['key']
+# Change to the host private IP Address
+#------------------------------------
+db_config:
+  database_uri: mongodb://db:27017
+  
+#------------------------------------
+# config-user.properties.j2 - user_config['key']
+#------------------------------------
+user_config:
+  node_boot_private_key: API_2_LICENCE_PRIVATE_KEY
+
+#------------------------------------
+# config-node.properties.j2 - node_config['key']
+#------------------------------------
+node_config:
+  localnode_host: "{{ ansible_host }}"
+  localnode_friendly_name: api-2
+  localnode_roles: Api
+  should_precompute_transaction_addresses: true
+  should_audit_dispatcher_inputs: false
+  max_blocks_per_sync_attempt: 400
+
+#------------------------------------
+# config-extensions-server.properties.j2 - ext_server_config['key']
+#------------------------------------
+ext_server_config:
+  extension_filespooling: true
+  extension_partialtransaction: true
+  extension_addressextraction: true
+  extension_mongo: true
+  extension_zeromq: true
+
+#------------------------------------
+# config-harvesting.properties.j2 - hv_config['key']
+#------------------------------------
+hv_config:
+  harvest_key:
+  is_auto_harvesting_enabled: false
