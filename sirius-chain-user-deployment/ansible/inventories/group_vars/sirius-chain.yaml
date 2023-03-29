@@ -1,0 +1,146 @@
+#------------------------------------
+# Sirius Chain Seed Data
+#------------------------------------
+seed_data_archive: seed-data.tar.gz
+
+#------------------------------------
+# Sirius Chain Configuration
+#------------------------------------
+# p2p node
+siriuschain_config_directory: /opt/siriuschain-config
+siriuschain_data_directory: /opt/siriuschain-config/data
+siriuschain_scripts_directory: /opt/siriuschain-config/scripts
+siriuschain_logs_directory: /opt/siriuschain-config/logs
+siriuschain_user: "{{ ansible_user }}"
+siriuschain_group: "{{ ansible_user }}"
+
+# api node
+mongodb_data_directory: /opt/siriuschain-config/mongodata
+siriuschain_rest_user_config: /opt/siriuschain-config/restuserconfig
+
+# proximax-siriuschain-server
+siriuschain_server_repository_name: proximax/proximax-sirius-chain
+siriuschain_server_docker_tag: v0.6.7-buster
+siriuschain_binary_path: /sirius/bin
+aws_ecr: false
+
+# proximax-siriuschain-rest
+siriuschain_rest_repository_name: proximax/proximax-sirius-rest
+siriuschain_rest_docker_tag: v0.6.6
+
+#------------------------------------
+# config-network.properties.j2 - net_config['key']
+#------------------------------------
+net_config:
+  nemesis_signer_public_key: 
+  namespace_rental_fee_sink_public_key: 
+  mosaic_rental_fee_sink_public_key: 
+  reserved_root_namespace_names: xem, nem, user, account, org, com, biz, net, edu, mil, gov, info, prx, xpx, xarcade, xar, proximax, prc, storage, so, sm, sc, rw
+  max_difficulty_blocks: 4
+  long_offer_key: 
+  plugin_exchange_enabled: false
+  plugin_service_enabled: false
+  download_cache_enabled: false
+  max_mosaic_atomic_units: 9'000'000'000'000'001
+  total_chain_importance: 9'000'000'000'000'000
+
+#------------------------------------
+# config-immutable.properties.j2 - net_config['key']
+#------------------------------------
+immutable_config:
+  network_identifier: 
+  nemesis_generation_hash_public_key: 
+  currency_mosaic_id: 
+  harvesting_mosaic_id: 
+  storage_mosaic_id: 
+  streaming_mosaic_id: 
+  review_mosaic_id: 
+  super_contract_mosaic_id: 
+  xar_mosaic_id: 
+  initial_currency_atomic_units: 9'000'000'000'000'000
+
+  
+#------------------------------------
+# config-inflation.properties.j2 - inflation_config['key']
+#------------------------------------
+inflation_config: 
+  starting-at-height-1: 0
+  starting-at-height-10000: 0
+
+#------------------------------------
+# config-logging.properties.j2 - log_config['key']
+#------------------------------------
+# [console]
+log_config:
+  console_sink_type: Sync
+  console_level: Info
+  console_color_mode: None
+
+  # [file]
+  file_sink_type: Sync
+  file_level: Info
+  file_directory: /logs
+  file_pattern: /logs/sirius_chain_%4N.log
+  file_rotation_size: 25MB
+  file_max_total_size: 250MB
+  file_min_free_space: 100MB
+
+#------------------------------------
+# siriuschain REST - rest.json
+#------------------------------------
+siriuschain_network_name: 
+siriuschain_network_description: 
+
+#------------------------------------
+# peers-api.json.j2
+#------------------------------------
+known_api_peers: [
+  {
+    'public_key': "API_1_LICENCE_PUBLIC_KEY",
+    'endpoint.host': "API_1_IP",
+    'endpoint.port': '7900',
+    'metadata.name': "api-1",
+    'metadata.roles': "Api"
+  },
+  {
+    'public_key': "API_2_LICENCE_PUBLIC_KEY",
+    'endpoint.host': "API_2_IP",
+    'endpoint.port': '7900',
+    'metadata.name': "api-2",
+    'metadata.roles': "Api"
+  },
+  {
+    'public_key': "API_3_LICENCE_PUBLIC_KEY",
+    'endpoint.host': "API_3_IP",
+    'endpoint.port': '7900',
+    'metadata.name': "api-3",
+    'metadata.roles': "Api"
+  }
+]
+
+#------------------------------------
+# peers-p2p.json.j2
+#------------------------------------
+known_peers: [
+  {
+    'public_key': "P2P_1_LICENSE_PUBLIC_KEY",
+    'endpoint.host': "P2P_1_IP",
+    'endpoint.port': '7900',
+    'metadata.name': "p2p-1",
+    'metadata.roles': 'Peer'
+  },
+  {
+    'public_key': "P2P_2_LICENSE_PUBLIC_KEY",
+    'endpoint.host': "P2P_2_IP",
+    'endpoint.port': '7900',
+    'metadata.name': "p2p-2",
+    'metadata.roles': 'Peer'
+  },
+  {
+    'public_key': "P2P_3_LICENSE_PUBLIC_KEY",
+    'endpoint.host': "P2P_3_IP",
+    'endpoint.port': '7900',
+    'metadata.name': "p2p-3",
+    'metadata.roles': 'Peer'
+  }
+]
