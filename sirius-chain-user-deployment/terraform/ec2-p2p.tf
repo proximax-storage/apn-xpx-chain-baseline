@@ -24,5 +24,9 @@ module "ec2_p2p" {
     }
   ]
 
+  metadata_options = {
+    http_tokens                 = "required"
+  }
+    
   tags = var.tags
 }
