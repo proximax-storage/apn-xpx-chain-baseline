@@ -23,6 +23,10 @@ module "ec2_api" {
       volume_size = var.api_ebs_size
     }
   ]
+    
+  metadata_options = {
+    http_tokens = "required"
+  }
 
   tags = var.tags
 }
